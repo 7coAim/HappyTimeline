@@ -14,10 +14,8 @@
       <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container">
           <!-- ロゴ -->
-          <a class="navbar-brand" href="#">
-            <img src="https://2.bp.blogspot.com/-JU4UQDZuQSg/UYG5NEg2-nI/AAAAAAAARAk/W969CrQhfy4/s450/happy_wedding.png" height="30" class="d-inline-block align-top" alt="ブランド">
-            Happy Timeline
-          </a>
+          <img src="https://2.bp.blogspot.com/-JU4UQDZuQSg/UYG5NEg2-nI/AAAAAAAARAk/W969CrQhfy4/s450/happy_wedding.png" height="30" class="d-inline-block align-top" alt="favicon">
+          <%= link_to 'Happy Timeline', root_path, class: 'navbar-brand' %>
           <!-- スマホ用ナブバー展開ボタン -->
           <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#Navber" aria-controls="Navber" aria-expanded="false" aria-label="ナビゲーションバー">
             <span class="navbar-toggler-icon"></span>
@@ -26,17 +24,22 @@
           <div class="collapse navbar-collapse" id="Navber">
             <ul class="navbar-nav nav-fill w-100 nav-justified">
               <li class="nav-item">
-                <a href="" class="nav-link ">ご利用ガイド</a>
+                <%= link_to 'ご利用ガイド', root_path, class: 'nav-link' %>
               </li>
               <li class="nav-item">
-                <a href="" class="nav-link">新しいつくる</a>
+                <%= link_to '新しくつくる', new_timeline_path, class: 'nav-link' %>
               </li>
-              <li class="nav-item">
-                <a href="" class="nav-link">ログイン</a>
-              </li>
-              <li class="nav-item">
-                <a href="" class="nav-link">新規登録</a>
-              </li>
+              <% if logged_in? %>
+                <li class="nav-item"><%= link_to "マイページ", user_path(current_user.id) , class: 'nav-link' %></li>
+                <li class="nav-item"><%= link_to "ログアウト", session_path(current_user.id), method: :delete, class: 'nav-link' %></li>
+              <% else %>
+                <li class="nav-item">
+                  <%= link_to "新規登録", new_user_path, class: 'nav-link' %>
+                </li>
+                <li class="nav-item">
+                  <%= link_to "ログイン", new_session_path, class: 'nav-link' %>
+                </li>
+              <% end %>
             </ul>
           </div>
         </div>
@@ -50,7 +53,7 @@
     <hr>
     <footer class="footer">
       <div class="container">
-        <p class="text-muted text-center  my-4">© 2018 - Happy Timeline - All Rights Reserved.</p>
+        <p class="text-muted text-center my-4">© 2018 - Happy Timeline - All Rights Reserved.</p>
       </div>
     </footer>
 

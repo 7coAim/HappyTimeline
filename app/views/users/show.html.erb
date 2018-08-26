@@ -1,0 +1,22 @@
+<div class="row justify-content-center">
+  <div class="col-lg-5">
+
+    <h1 class="text-center mt-3">マイページ</h1>
+    <hr>
+    <p class="text-muted text-center my-4"><%= @user.name %>さんのマイページです</p>
+
+    <% if flash[:notice] %>
+      <div class="alert alert-success alert-dismissible my-3" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="閉じる">
+          <span aria-hidden="true">×</span></button>
+        <strong>お知らせ</strong>：<%= flash[:notice] %>
+      </div>
+    <% end %>
+
+    <div class="pull-left">
+        <p class="p-3 mb-2 bg-light text-dark">Name：<%= @user.name %></p>
+        <p class="p-3 mb-2 bg-light text-dark">Email：<%= @user.email %></p>
+    </div>
+
+  </div>
+</div>
