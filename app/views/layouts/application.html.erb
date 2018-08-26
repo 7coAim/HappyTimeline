@@ -1,14 +1,58 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>HappyTimeline</title>
+    <title>Happy Timeline</title>
     <%= csrf_meta_tags %>
-
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <meta name="viewport" content="width=device-width">
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
-    <%= yield %>
+
+    <header>
+      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container">
+          <!-- ロゴ -->
+          <a class="navbar-brand" href="#">
+            <img src="https://2.bp.blogspot.com/-JU4UQDZuQSg/UYG5NEg2-nI/AAAAAAAARAk/W969CrQhfy4/s450/happy_wedding.png" height="30" class="d-inline-block align-top" alt="ブランド">
+            Happy Timeline
+          </a>
+          <!-- スマホ用ナブバー展開ボタン -->
+          <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#Navber" aria-controls="Navber" aria-expanded="false" aria-label="ナビゲーションバー">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <!-- navbarの要素 -->
+          <div class="collapse navbar-collapse" id="Navber">
+            <ul class="navbar-nav nav-fill w-100 nav-justified">
+              <li class="nav-item">
+                <a href="" class="nav-link ">ご利用ガイド</a>
+              </li>
+              <li class="nav-item">
+                <a href="" class="nav-link">新しいつくる</a>
+              </li>
+              <li class="nav-item">
+                <a href="" class="nav-link">ログイン</a>
+              </li>
+              <li class="nav-item">
+                <a href="" class="nav-link">新規登録</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <div class="container">
+      <%= yield %>
+    </div>
+
+    <hr>
+    <footer class="footer">
+      <div class="container">
+        <p class="text-muted text-center  my-4">© 2018 - Happy Timeline - All Rights Reserved.</p>
+      </div>
+    </footer>
+
   </body>
 </html>

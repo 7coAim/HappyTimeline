@@ -34,6 +34,7 @@ gem 'jbuilder', '~> 2.5'
 # gem 'capistrano-rails', group: :development
 
 # 追記
+gem 'bcrypt', '3.1.11'
 gem 'bootstrap', '~> 4.1.1'
 gem 'jquery-rails'
 
