@@ -5,6 +5,8 @@
     <hr>
     <p class="text-muted text-center my-4">メールアドレスでログインする</p>
 
+    <div class="border border-light rounded p-3">
+
     <% flash.each do |key, value| %>
       <div class="alert alert-warning alert-dismissible my-3" role="alert">
         <button type="button" class="close" data-dismiss="alert" aria-label="閉じる">
@@ -14,7 +16,8 @@
       </div>
     <% end %>
 
-    <%= form_with(scope: :session, url: sessions_path, local: true) do |f| %>
+
+      <%= form_with(scope: :session, url: sessions_path, local: true) do |f| %>
 
       <div class="form-group my-3">
         <%= f.email_field :email, class: 'form-control form-control-lg', placeholder: "Email" %>
@@ -22,11 +25,11 @@
       <div class="form-group my-3">
         <%= f.password_field :password, class: 'form-control form-control-lg', placeholder: "Password" %>
       </div>
-      <div class="my-5">
+      <div class="my-4">
         <%= f.submit "ログイン", class: 'btn btn-primary btn-lg badge-pill btn-block' %>
       </div>
 
-    <% end %>
-
+      <% end %>
+    </div>
   </div>
 </div>
