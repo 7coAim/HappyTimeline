@@ -3,6 +3,7 @@
 <%= form.hidden_field :to_name %>
 <%= form.hidden_field :from_name %>
 <%= form.hidden_field :memo %>
+<%= form.hidden_field :design_id %>
 
 <div class="form-group my-3">
   <label for="inputTimelineTitle">タイムラインのタイトル</label>
@@ -18,9 +19,17 @@
 </div>
 <div class="form-group my-3">
   <label for="inputTimelineMemo">参加メンバへのメモ（編集ロックすると非表示になります）</label>
-    <%= form.text_area :memo, class: 'form-control form-control-lg', readonly: 'readonly',  id: 'inputTimelineMemo' %>
+  <%= form.text_area :memo, class: 'form-control form-control-lg', readonly: 'readonly', id: 'inputTimelineMemo' %>
 </div>
 
+<div class="form-group my-3">
+  <label for="inputTimelineDesignId">デザイン・画像の選択</label>
+  <div class="row justify-content-center">
+    <div class="col-12">
+      <%= image_tag("/#{@timeline.design_id}.png" ,class: 'img-thumbnail radio_image') %>
+    </div>
+  </div>
+</div>
 
 <div class="my-4">
   <%= form.submit "作成する", class: 'btn btn-primary btn-lg badge-pill btn-block' %>
@@ -33,6 +42,7 @@
 <%= form.hidden_field :to_name %>
 <%= form.hidden_field :from_name %>
 <%= form.hidden_field :memo %>
+<%= form.hidden_field :design_id %>
 <div class="my-4">
 <%= form.submit "もどる", class: 'btn btn-secondary btn-lg badge-pill btn-block', name: 'back' %>
 </div>

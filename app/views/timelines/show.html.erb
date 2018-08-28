@@ -30,6 +30,9 @@
       <div class="modal fade" id="ModalPostMessage" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
           <div class="modal-content">
+
+            <%= form_with(model: @new_message, local: true) do |form| %>
+
             <div class="modal-header">
               <h5 class="modal-title" id="exampleModalCenterTitle">メッセージ投稿フォーム</h5>
               <button type="button" class="close" data-dismiss="modal" aria-label="閉じる">
@@ -37,7 +40,6 @@
               </button>
             </div>
             <div class="modal-body">
-              <%= form_with(model: @new_message, local: true) do |form| %>
 
               <% if @new_message.errors.any? %>
                 <div class="alert alert-danger alert-dismissible my-3" role="alert">
@@ -85,7 +87,8 @@
   <% end %>
 
   <em>
-    <p class="text-left text-secondary my-2">To：<%= @timeline.to_name %></o>
+    <p class="text-left text-secondary my-2">To：<%= @timeline.to_name %></p>
+    <%= image_tag("/#{@timeline.design_id}.png" ,class: 'img-thumbnail') if @timeline.design_id? %>
     <p class="text-right text-secondary my-2">From：<%= @timeline.from_name %></p>
   </em>
 

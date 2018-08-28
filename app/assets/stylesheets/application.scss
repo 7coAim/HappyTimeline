@@ -34,3 +34,16 @@ footer {
   border-width: 1px 0 0;
   margin-top: 2em;
 }
+
+.radio {
+	display: none;
+}
+
+.radio + .radio_image {
+	border: 1px #dddddd solid;
+	background-color: #ffffff;
+}
+.radio:checked + .radio_image {
+	border: 1px #007bff solid;
+	background-color: #eef6ff;
+}

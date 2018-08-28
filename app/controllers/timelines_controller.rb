@@ -66,7 +66,7 @@ class TimelinesController < ApplicationController
   private
 
   def timeline_params
-    params.require(:timeline).permit(:title, :to_name, :from_name, :memo, :locked, :url)
+    params.require(:timeline).permit(:title, :to_name, :from_name, :memo, :locked, :url, :design_id)
   end
 
   def set_timeline
