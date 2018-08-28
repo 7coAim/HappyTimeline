@@ -11,3 +11,7 @@ ja:
         password: パスワード
         password_confirmation: パスワード（確認用）
         icon: アイコン画像
+      timeline:
+        title: タイトル
+        to_name: お贈りする相手
+        from_name: 贈り主

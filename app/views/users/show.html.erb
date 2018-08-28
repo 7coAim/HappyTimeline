@@ -1,5 +1,5 @@
 <div class="row justify-content-center">
-  <div class="col-lg-5">
+  <div class="col-lg-9">
 
     <h1 class="text-center mt-3">マイページ</h1>
     <hr>
@@ -13,10 +13,50 @@
       </div>
     <% end %>
 
-    <div class="pull-left">
-        <p class="p-3 mb-2 bg-light text-dark">Name：<%= @user.name %></p>
-        <p class="p-3 mb-2 bg-light text-dark">Email：<%= @user.email %></p>
+    <div class="">
+      <p class="p-3 mb-2 bg-light text-dark">Name：<%= @user.name %></p>
+      <p class="p-3 mb-2 bg-light text-dark">Email：<%= @user.email %></p>
     </div>
 
-  </div>
-</div>
+    <h3 class="mt-5 mb-3">作成したタイムライン一覧
+      <%= link_to '＋ タイムラインを新しくつくる', new_timeline_path, class: 'btn btn-sm btn-outline-primary badge-pill float-md-right d-block d-md-inline-block my-2 my-md-0', role: 'button' %>
+    </h3>
+    <div class="table-responsive">
+      <table class="table table-hover table-sm text-nowrap">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th scope="col">タイトル</th>
+            <th scope="col">お贈りする相手</th>
+            <th scope="col">贈り主</th>
+            <th scope="col">編集ロック</th>
+            <th scope="col">設定変更</th>
+            <th scope="col">削除</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% user_timeline_count = 0 %>
+            <% @user.timelines.order("created_at ASC").each do |timeline| %>
+              <% user_timeline_count += 1 %>
+                <tr>
+                  <th scope="row"><%= user_timeline_count %></th>
+                  <td><%= link_to timeline.title, timeline_path(timeline.url) %></td>
+                  <td><%= timeline.to_name %></td>
+                  <td><%= timeline.from_name %></td>
+                  <td>
+                    <% if timeline.locked %>
+                      <%= link_to 'ロック済み', unlock_timeline_path(timeline.url), class: 'btn btn-dark btn-sm' ,data: { confirm: 'ロックを解除しますか？' }%>
+                    <% else %>
+                      <%= link_to 'ロックする', lock_timeline_path(timeline.url), class: 'btn btn-warning btn-sm' ,data: { confirm: '編集をロックしますか？（お贈りする相手の閲覧に適した表示内容となります）' }%>
+                    <% end %>
+                  </td>
+                  <td><%= link_to '設定変更', edit_timeline_path(timeline.url), class: 'btn btn-secondary btn-sm' %></td>
+                  <td><%= link_to '削除', timeline_path(timeline.url), class: 'btn btn-danger btn-sm', method: :delete ,data: { confirm: '本当に削除しますか？' } %></td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+
+      </div>
+    </div>

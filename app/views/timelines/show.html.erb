@@ -1,0 +1,118 @@
+<div class="row justify-content-center">
+  <div class="col-lg-7">
+
+    <h1 class="text-center mt-3"><%= @timeline.title %></h1>
+    <hr>
+    <% if @timeline.locked %>
+      <div class="alert alert-success alert-dismissible my-3" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="閉じる">
+          <span aria-hidden="true">×</span></button>
+        <strong>お祝いメッセージが届いています！</strong>
+      </div>
+    <% else %>
+      <div class="alert alert-success my-2" role="alert">
+        <strong>以下の専用URLをシェアして、みんなでお祝いメッセージを寄せましょう！</strong>
+        <p class="text-left my-2 mx-0 px-0 small" style="word-wrap: break-word;"><%= link_to timeline_url(@timeline.url), timeline_url(@timeline.url) %></p>
+      </div>
+      <% if @timeline.memo? %>
+        <div class="alert alert-info my-2" role="alert">
+          <strong>参加メンバへのメモ</strong>
+          <p class="text-left my-2"><%= @timeline.memo %></p>
+        </div>
+      <% end %>
+
+      <p class="text-right">
+        <button type="button" class="btn btn-sm btn-outline-info" data-toggle="modal" data-target="#ModalPostMessage">
+          メッセージを投稿する
+        </button>
+      </p>
+
+      <div class="modal fade" id="ModalPostMessage" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalCenterTitle">メッセージ投稿フォーム</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="閉じる">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <%= form_with(model: @new_message, local: true) do |form| %>
+
+              <% if @new_message.errors.any? %>
+                <div class="alert alert-danger alert-dismissible my-3" role="alert">
+                  <button type="button" class="close" data-dismiss="alert" aria-label="閉じる">
+                    <span aria-hidden="true">×</span></button>
+                  <strong><%= @new_message.errors.count %>件のエラーがあります。ご確認ください。</strong>
+                  <ul>
+                    <% @new_message.errors.full_messages.each do |msg| %>
+                      <li><%= msg %></li>
+                    <% end %>
+                  </ul>
+                </div>
+              <% end %>
+
+              <div class="form-group my-3">
+                <label for="inputMessageText">メッセージ（140文字以内）</label>
+                <%= form.text_area :post_text, class: 'form-control', placeholder: "例：ご結婚おめでとうございます。末永くお幸せに！", id: 'inputMessageText', maxlength: '140' %>
+              </div>
+              <div class="form-group my-3">
+                <label for="inputMessageName">お名前（32文字以内）</label>
+                <%= form.text_field :post_name, class: 'form-control', placeholder: "例：メッセージ花子", id: 'inputMessageName' , maxlength: '32'%>
+              </div>
+
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">閉じる</button>
+              <%= form.submit "投稿する", class: 'btn btn-primary' %>
+            </div>
+
+          <% end %>
+        </div>
+      </div>
+    </div>
+
+    <% flash.each do |type, msg| %>
+      <div class="alert alert-info alert-dismissible fade show my-3" role="alert">
+        <%= msg %>
+        <button type="button" class="close" data-dismiss="alert" aria-label="閉じる">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+    <% end %>
+
+    <hr>
+  <% end %>
+
+  <em>
+    <p class="text-left text-secondary my-2">To：<%= @timeline.to_name %></o>
+    <p class="text-right text-secondary my-2">From：<%= @timeline.from_name %></p>
+  </em>
+
+  <% @timeline.messages.order("updated_at DESC").each do |message| %>
+
+    <div class="card my-3 shadow">
+      <div class="card-body">
+        <p class="card-text"><%= message.post_text %></p>
+        <div class="d-flex justify-content-between align-items-center">
+          <% unless @timeline.locked %>
+            <div class="btn-group">
+              <%= link_to '編集', edit_message_path(message.id), class: 'btn btn-sm btn-outline-secondary' %>
+              <%= link_to '削除', message_path(message.id), class: 'btn btn-sm btn-outline-danger', method: :delete ,data: { confirm: '本当に削除しますか？' } %>
+            </div>
+          <% end %>
+          <div></div>
+          <small class="text-muted">
+            <em>
+              <span class="mx-2"><%= message.post_name %></span>
+              <span class="mx-2"><%= message.updated_at.strftime('%Y.%m.%d') %></span>
+            </em>
+          </small>
+        </div>
+      </div>
+    </div>
+
+  <% end %>
+
+</div>
+</div>

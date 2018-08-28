@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180825165647) do
+ActiveRecord::Schema.define(version: 20180828195522) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -32,11 +32,12 @@ ActiveRecord::Schema.define(version: 20180825165647) do
     t.string "from_name"
     t.integer "design_id"
     t.text "memo"
-    t.boolean "locked"
-    t.string "url"
+    t.boolean "locked", default: false
+    t.string "url", null: false
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["url"], name: "index_timelines_on_url", unique: true
     t.index ["user_id"], name: "index_timelines_on_user_id"
   end
 

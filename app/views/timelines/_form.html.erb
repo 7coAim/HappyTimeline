@@ -1,0 +1,37 @@
+<%= form_with(model: @timeline, local: true ,url: choose_new_or_edit, class: 'new_timeline_form' ) do |form| %>
+
+<% if @timeline.errors.any? %>
+  <div class="alert alert-danger alert-dismissible my-3" role="alert">
+    <button type="button" class="close" data-dismiss="alert" aria-label="閉じる">
+      <span aria-hidden="true">×</span></button>
+    <strong><%= @timeline.errors.count %>件のエラーがあります。ご確認ください。</strong>
+    <ul>
+      <% @timeline.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
+  <div class="form-group my-3">
+    <label for="inputTimelineTitle">タイムラインのタイトル</label>
+      <%= form.text_field :title, class: 'form-control form-control-lg', placeholder: "例：〇〇さん！ご結婚おめでとうございます！", id: 'inputTimelineTitle' %>
+  </div>
+  <div class="form-group my-3">
+    <label for="inputTimelineToName">メッセージをお贈りする相手のお名前・名称</label>
+      <%= form.text_field :to_name, class: 'form-control form-control-lg', placeholder: "例：〇〇先輩", id: 'inputTimelineToName' %>
+  </div>
+  <div class="form-group my-3">
+    <label for="inputTimelineFromName">贈り主のお名前・名称</label>
+      <%= form.text_field :from_name, class: 'form-control form-control-lg', placeholder: "例：サークル後輩一同", id: 'inputTimelineFromName' %>
+  </div>
+  <div class="form-group my-3">
+    <label for="inputTimelineMemo">参加メンバへのメモ（編集ロックすると非表示になります）</label>
+      <%= form.text_area :memo, class: 'form-control form-control-lg', placeholder: "例：●月●日までにメッセージを投稿してください！", id: 'inputTimelineMemo' %>
+  </div>
+
+  <div class="my-4">
+    <%= form.submit "送信する", class: 'btn btn-primary btn-lg badge-pill btn-block' %>
+  </div>
+
+<% end %>

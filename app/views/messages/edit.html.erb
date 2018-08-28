@@ -1,0 +1,42 @@
+<div class="row justify-content-center">
+  <div class="col-lg-7">
+
+    <h1 class="text-center mt-3">メッセージの編集</h1>
+    <hr>
+    <p class="text-muted text-center my-4">お祝いメッセージを編集します</p>
+
+    <div class="border border-light rounded p-3">
+
+      <%= form_with(model: @message, local: true) do |form| %>
+
+      <% if @message.errors.any? %>
+        <div class="alert alert-danger alert-dismissible my-3" role="alert">
+          <button type="button" class="close" data-dismiss="alert" aria-label="閉じる">
+            <span aria-hidden="true">×</span></button>
+          <strong><%= @message.errors.count %>件のエラーがあります。ご確認ください。</strong>
+          <ul>
+            <% @message.errors.full_messages.each do |msg| %>
+              <li><%= msg %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+
+      <div class="form-group my-3">
+        <label for="inputMessageText">メッセージ（140文字以内）</label>
+        <%= form.text_area :post_text, class: 'form-control', placeholder: "例：ご結婚おめでとうございます。末永くお幸せに！", id: 'inputMessageText', maxlength: '140' %>
+      </div>
+      <div class="form-group my-3">
+        <label for="inputMessageName">お名前（32文字以内）</label>
+        <%= form.text_field :post_name, class: 'form-control', placeholder: "例：メッセージ花子", id: 'inputMessageName' , maxlength: '32'%>
+      </div>
+      <div class="my-4">
+        <%= form.submit "投稿する", class: 'btn btn-primary btn-lg badge-pill btn-block' %>
+      </div>
+
+      <% end %>
+
+    </div>
+
+  </div>
+</div>
