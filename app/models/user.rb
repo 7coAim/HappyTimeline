@@ -6,5 +6,4 @@ class User < ApplicationRecord
   has_secure_password
   validates :password, length: { in: 6..32 }
   has_many :timelines, dependent: :destroy
-  #mount_uploader :icon, ImageUploader
 end

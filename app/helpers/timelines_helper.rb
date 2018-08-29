@@ -10,5 +10,4 @@ module TimelinesHelper
   def current_timeline
     @current_timeline ||= Timeline.find_by(id: session[:timeline_id])
   end
-
 end

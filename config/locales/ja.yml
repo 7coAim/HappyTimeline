@@ -1,17 +1,17 @@
 ja:
   activerecord:
     models:
-      timeline: タイムライン
-      user: ユーザ
-      message: お祝いメッセージ
+      timeline:                タイムライン
+      user:                    ユーザ
+      message:                 お祝いメッセージ
     attributes:
       user:
-        name: 名前
-        email: メールアドレス
-        password: パスワード
+        name:                  名前
+        email:                 メールアドレス
+        password:              パスワード
         password_confirmation: パスワード（確認用）
-        icon: アイコン画像
+        icon:                  アイコン画像
       timeline:
-        title: タイトル
-        to_name: お贈りする相手
-        from_name: 贈り主
+        title:                 タイトル
+        to_name:               お贈りする相手
+        from_name:             贈り主

@@ -15,7 +15,6 @@
  *= require_tree .
  *= require_self
  */
-
 html {
   min-height: 100%;
   position: relative;
@@ -36,14 +35,15 @@ footer {
 }
 
 .radio {
-	display: none;
+  display: none;
 }
 
 .radio + .radio_image {
-	border: 1px #dddddd solid;
-	background-color: #ffffff;
+  border: 1px #dddddd solid;
+  background-color: #ffffff;
 }
+
 .radio:checked + .radio_image {
-	border: 1px #007bff solid;
-	background-color: #eef6ff;
+  border: 1px #007bff solid;
+  background-color: #eef6ff;
 }

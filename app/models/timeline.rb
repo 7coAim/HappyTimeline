@@ -20,5 +20,4 @@ class Timeline < ApplicationRecord
       break unless Timeline.where(url: url).exists?
     end
   end
-
 end

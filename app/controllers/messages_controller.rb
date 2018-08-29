@@ -1,5 +1,4 @@
 class MessagesController < ApplicationController
-
   before_action :set_message, only: %i[show edit update destroy]
   before_action :login?, only: %i[edit destroy]
 
@@ -8,10 +7,10 @@ class MessagesController < ApplicationController
     @message.timeline_id = current_timeline.id
 
     if @message.save
-      flash[:success]='メッセージを投稿しました'
+      flash[:success] = 'メッセージを投稿しました'
       redirect_to timeline_path(current_timeline.url)
     else
-      flash[:danger]='メッセージを投稿できませんでした'
+      flash[:danger] = 'メッセージを投稿できませんでした'
       redirect_to timeline_path(current_timeline.url)
     end
   end
@@ -31,8 +30,7 @@ class MessagesController < ApplicationController
     redirect_to timeline_path(current_timeline.url), notice: 'メッセージを削除しました'
   end
 
-  def show
-  end
+  def show; end
 
   private
 
@@ -43,6 +41,4 @@ class MessagesController < ApplicationController
   def set_message
     @message = Message.find(params[:id])
   end
-
-
 end

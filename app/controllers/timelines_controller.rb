@@ -56,7 +56,7 @@ class TimelinesController < ApplicationController
 
   def show
     if @timeline.locked
-      render :show, layout: "locked_timeline_layout"
+      render :show, layout: 'locked_timeline_layout'
     else
       session[:timeline_id] = @timeline.id
       @new_message = Message.new
@@ -70,6 +70,6 @@ class TimelinesController < ApplicationController
   end
 
   def set_timeline
-    @timeline = Timeline.find_by(url:params[:url])
+    @timeline = Timeline.find_by(url: params[:url])
   end
 end

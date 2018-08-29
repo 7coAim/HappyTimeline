@@ -35,10 +35,10 @@
   <div class="row justify-content-center">
     <% (1..9).each{|picture_num|%>
       <div class="col-4">
-      <label>
-        <%= form.radio_button :design_id, picture_num, class: 'radio',id: 'inputTimelineDesignId' %>
-        <%= image_tag("/#{picture_num}.png" ,class: 'img-thumbnail radio_image') %>
-      </label>
+        <label>
+          <%= form.radio_button :design_id, picture_num, class: 'radio',id: 'inputTimelineDesignId' %>
+          <%= image_tag("/#{picture_num}.png" ,class: 'img-thumbnail radio_image') %>
+        </label>
       </div>
     <%  } %>
   </div>

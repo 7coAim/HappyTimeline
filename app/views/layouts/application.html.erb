@@ -26,15 +26,15 @@
                 <%= link_to 'ご利用ガイド', root_path, class: 'nav-link' %>
               </li>
               <% if logged_in? %>
-              <li class="nav-item">
-                <%= link_to '新しくつくる', new_timeline_path, class: 'nav-link' %>
-              </li>
+                <li class="nav-item">
+                  <%= link_to '新しくつくる', new_timeline_path, class: 'nav-link' %>
+                </li>
                 <li class="nav-item"><%= link_to "マイページ", user_path(current_user.id) , class: 'nav-link' %></li>
                 <li class="nav-item"><%= link_to "ログアウト", session_path(current_user.id), method: :delete, class: 'nav-link' %></li>
               <% else %>
-              <li class="nav-item">
-                <%= link_to '新しくつくる', new_user_path, class: 'nav-link' %>
-              </li>
+                <li class="nav-item">
+                  <%= link_to '新しくつくる', new_user_path, class: 'nav-link' %>
+                </li>
                 <li class="nav-item">
                   <%= link_to "新規登録", new_user_path, class: 'nav-link' %>
                 </li>
@@ -51,7 +51,6 @@
     <div class="container">
       <%= yield %>
     </div>
-
 
     <footer class="footer bg-light">
       <div class="container">
